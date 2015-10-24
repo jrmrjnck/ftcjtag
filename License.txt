@@ -1,0 +1,7 @@
+FTC MPSSE Interface DLLs - Copyright © FTDI Ltd. 2009
+
+
+The source code to the FTCI2C, FTCJTAG and FTCSPI DLLs is provided as-is and no warranty is made as to its function or reliability.  
+
+This source code may be freely modified and redistributed, provided that the FTDI Ltd. copyright notice remains intact.
+

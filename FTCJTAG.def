@@ -1,0 +1,50 @@
+; FTCJTAG.def : Declares the module parameters for the DLL.
+; 24/08/05    kra     Added new function JTAG_GenerateClockPulses
+; 11/07/08    kra     Added new functions for FT2232H and FT4232H hi-speed devices
+; 19/08/08    kra     Added new function JTAG_CloseDevice
+
+
+LIBRARY	"FTCJTAG"
+
+EXPORTS
+  JTAG_GetNumDevices								@1
+  JTAG_GetDeviceNameLocID							@2
+  JTAG_OpenEx										@3
+  JTAG_Open											@4
+  JTAG_Close										@5
+  JTAG_InitDevice									@6
+  JTAG_GetClock										@7
+  JTAG_SetClock										@8
+  JTAG_SetLoopback									@9
+  JTAG_SetGPIOs										@10
+  JTAG_GetGPIOs										@11
+  JTAG_Write										@12
+  JTAG_Read											@13
+  JTAG_WriteRead									@14
+  JTAG_GetDllVersion								@15
+  JTAG_GetErrorCodeString							@16
+  JTAG_ClearCmdSequence								@17
+  JTAG_AddWriteCmd									@18
+  JTAG_AddReadCmd									@19
+  JTAG_AddWriteReadCmd								@20
+  JTAG_ExecuteCmdSequence							@21
+  JTAG_ClearDeviceCmdSequence						@22
+  JTAG_AddDeviceWriteCmd							@23
+  JTAG_AddDeviceReadCmd								@24
+  JTAG_AddDeviceWriteReadCmd						@25
+  JTAG_GenerateClockPulses							@26
+  JTAG_GetNumHiSpeedDevices							@27
+  JTAG_GetHiSpeedDeviceNameLocIDChannel				@28
+  JTAG_OpenHiSpeedDevice							@29
+  JTAG_GetHiSpeedDeviceType							@30
+  JTAG_TurnOnDivideByFiveClockingHiSpeedDevice		@31
+  JTAG_TurnOffDivideByFiveClockingHiSpeedDevice		@32
+  JTAG_TurnOnAdaptiveClockingHiSpeedDevice			@33
+  JTAG_TurnOffAdaptiveClockingHiSpeedDevice			@34
+  JTAG_SetDeviceLatencyTimer						@35
+  JTAG_GetDeviceLatencyTimer						@36
+  JTAG_GetHiSpeedDeviceClock						@37
+  JTAG_SetHiSpeedDeviceGPIOs						@38
+  JTAG_GetHiSpeedDeviceGPIOs						@39
+  JTAG_GenerateClockPulsesHiSpeedDevice				@40
+  JTAG_CloseDevice									@41					
