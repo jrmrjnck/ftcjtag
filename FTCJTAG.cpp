@@ -26,7 +26,7 @@ Revision History:
 	
 --*/
 
-#include "stdafx.h"
+#include "FtcJtagInternal.h"
 
 #include <windows.h>
 
@@ -36,7 +36,7 @@ Revision History:
 
 static FT2232hMpsseJtag *pFT2232hMpsseJtag = NULL;
 
-#include "stdafx.h"
+#include "FtcJtagInternal.h"
 
 BOOL APIENTRY DllMain( HANDLE hModule, 
                        DWORD  ul_reason_for_call, 

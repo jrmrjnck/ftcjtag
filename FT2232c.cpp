@@ -34,7 +34,7 @@ Revision History:
 
 #define WIO_DEFINED
 
-#include "stdafx.h"
+#include "FtcJtagInternal.h"
 
 #include "FT2232c.h"
 

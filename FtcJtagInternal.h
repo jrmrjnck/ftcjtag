@@ -1,0 +1,6 @@
+#ifndef FTC_JTAG_INTERNAL_H
+#define FTC_JTAG_INTERNAL_H
+
+#define MAX_NUM_DEVICES 50
+
+#endif // !FTC_JTAG_INTERNAL_H
