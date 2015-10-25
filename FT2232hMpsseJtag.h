@@ -33,11 +33,9 @@ Revision History:
 #ifndef FT2232hMpsseJtag_H
 #define FT2232hMpsseJtag_H
 
-#include <windows.h>
-
 #include "ftcjtag.h"
-
 #include "FT2232h.h"
+#include "FtcJtagInternal.h"
 
 #define DEVICE_CHANNEL_A " A"
 #define DEVICE_CHANNEL_B " B"
@@ -85,9 +83,9 @@ const BYTE FT_ERROR_VALUE = 0;
 
 #define MAX_ERROR_MSG_SIZE 250
 
-const CHAR ENGLISH[3] = "EN";
+const char ENGLISH[3] = "EN";
 
-const CHAR EN_Common_Errors[FTC_INSUFFICIENT_RESOURCES + 1][MAX_ERROR_MSG_SIZE] = {
+const char EN_Common_Errors[FTC_INSUFFICIENT_RESOURCES + 1][MAX_ERROR_MSG_SIZE] = {
     "",
     "Invalid device handle.",
     "Device not found.",
@@ -95,7 +93,7 @@ const CHAR EN_Common_Errors[FTC_INSUFFICIENT_RESOURCES + 1][MAX_ERROR_MSG_SIZE] 
     "General device IO error.",
     "Insufficient resources available to execute function."};
 
-const CHAR EN_New_Errors[(FTC_INVALID_STATUS_CODE - FTC_FAILED_TO_COMPLETE_COMMAND) + 1][MAX_ERROR_MSG_SIZE] = {
+const char EN_New_Errors[(FTC_INVALID_STATUS_CODE - FTC_FAILED_TO_COMPLETE_COMMAND) + 1][MAX_ERROR_MSG_SIZE] = {
     "Failed to complete command.",
     "Failed to synchronize the device MPSSE interface.",
     "Invalid device name index.",

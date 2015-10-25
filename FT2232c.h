@@ -27,9 +27,8 @@ Revision History:
 #ifndef FT2232c_H
 #define FT2232c_H
 
-#include <windows.h>
-
-#include "ftd2xx.h"
+#include "ftcjtag.h"
+#include <ftd2xx.h>
 
 typedef DWORD FTC_HANDLE;
 typedef ULONG FTC_STATUS;

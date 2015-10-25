@@ -29,8 +29,9 @@ Revision History:
 #define WIO_DEFINED
 
 #include "FtcJtagInternal.h"
-
 #include "FT2232h.h"
+
+#include <cstring>
 
 BOOL FT2232h::FTC_DeviceInUse(LPSTR lpDeviceName, DWORD dwLocationID)
 {
@@ -199,9 +200,9 @@ void FT2232h::FTC_InsertDeviceHandle(LPSTR lpDeviceName, DWORD dwLocationID, LPS
       if (OpenedHiSpeedDevices[iDeviceCntr].dwProcessId == 0)
       {
         OpenedHiSpeedDevices[iDeviceCntr].dwProcessId = dwProcessId;
-        strcpy_s(OpenedHiSpeedDevices[iDeviceCntr].szDeviceName, lpDeviceName);
+        strcpy(OpenedHiSpeedDevices[iDeviceCntr].szDeviceName, lpDeviceName);
         OpenedHiSpeedDevices[iDeviceCntr].dwLocationID = dwLocationID;
-        strcpy_s(OpenedHiSpeedDevices[iDeviceCntr].szChannel, lpChannel);
+        strcpy(OpenedHiSpeedDevices[iDeviceCntr].szChannel, lpChannel);
         OpenedHiSpeedDevices[iDeviceCntr].bDivideByFiveClockingState = TRUE;
         OpenedHiSpeedDevices[iDeviceCntr].dwDeviceType = dwDeviceType;
         OpenedHiSpeedDevices[iDeviceCntr].hDevice = ftHandle;
@@ -426,7 +427,7 @@ FTC_STATUS FT2232h::FTC_OpenSpecifiedHiSpeedDevice(LPSTR lpDeviceName, DWORD dwL
           {
             if ((Status = FT_OpenEx((PVOID)dwLocationID, FT_OPEN_BY_LOCATION, &ftHandle)) == FTC_SUCCESS)
             {
-              *pftHandle = (DWORD)ftHandle;
+              *pftHandle = (DWORD)reinterpret_cast<intptr_t>(ftHandle);
 
               FTC_InsertDeviceHandle(lpDeviceName, dwLocationID, lpChannel, dwDeviceType, *pftHandle);
             }

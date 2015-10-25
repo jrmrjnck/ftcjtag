@@ -31,14 +31,12 @@ Revision History:
 
 #define WIO_DEFINED
 
+#include "FT2232hMpsseJtag.h"
 #include "FtcJtagInternal.h"
 
-#include <io.h>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "FT2232hMpsseJtag.h"
-
 
 FTC_STATUS FT2232hMpsseJtag::CheckWriteDataToExternalDeviceBitsBytesParameters(DWORD dwNumBitsToWrite, DWORD dwNumBytesToWrite)
 {
@@ -2629,7 +2627,7 @@ FTC_STATUS FT2232hMpsseJtag::JTAG_GetErrorCodeString(LPSTR lpLanguage, FTC_STATU
                                                      LPSTR lpErrorMessageBuffer, DWORD dwBufferSize)
 {
   FTC_STATUS Status = FTC_SUCCESS;
-  CHAR szErrorMsg[MAX_ERROR_MSG_SIZE];
+  char szErrorMsg[MAX_ERROR_MSG_SIZE];
   INT iCharCntr = 0;
 
   EnterCriticalSection(&threadAccess);
@@ -2645,13 +2643,13 @@ FTC_STATUS FT2232hMpsseJtag::JTAG_GetErrorCodeString(LPSTR lpLanguage, FTC_STATU
       if (strcmp(lpLanguage, ENGLISH) == 0)
       {
         if ((StatusCode >= FTC_SUCCESS) && (StatusCode <= FTC_INSUFFICIENT_RESOURCES))
-          strcpy_s(szErrorMsg, EN_Common_Errors[StatusCode]);
+          strcpy(szErrorMsg, EN_Common_Errors[StatusCode]);
         else
-          strcpy_s(szErrorMsg, EN_New_Errors[(StatusCode - FTC_FAILED_TO_COMPLETE_COMMAND)]);
+          strcpy(szErrorMsg, EN_New_Errors[(StatusCode - FTC_FAILED_TO_COMPLETE_COMMAND)]);
       }
       else
       {
-        strcpy_s(szErrorMsg, EN_New_Errors[FTC_INVALID_LANGUAGE_CODE - FTC_FAILED_TO_COMPLETE_COMMAND]);
+        strcpy(szErrorMsg, EN_New_Errors[FTC_INVALID_LANGUAGE_CODE - FTC_FAILED_TO_COMPLETE_COMMAND]);
 
         Status = FTC_INVALID_LANGUAGE_CODE;
       }

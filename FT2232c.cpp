@@ -35,9 +35,10 @@ Revision History:
 #define WIO_DEFINED
 
 #include "FtcJtagInternal.h"
-
 #include "FT2232c.h"
 
+#include <cstring>
+#include <stdint.h>
 
 BOOLEAN FT2232c::FTC_DeviceInUse(LPSTR lpDeviceName, DWORD dwLocationID)
 {
@@ -383,7 +384,7 @@ FTC_STATUS FT2232c::FTC_OpenSpecifiedDevice(LPSTR lpDeviceName, DWORD dwLocation
 
           if (Status == FTC_SUCCESS)
           {
-            *pftHandle = (DWORD)ftHandle;
+            *pftHandle = (DWORD)reinterpret_cast<intptr_t>(ftHandle);
 
             FTC_InsertDeviceHandle(lpDeviceName, dwLocationID, *pftHandle);
           }
@@ -741,6 +742,7 @@ FTC_STATUS FT2232c::FTC_SynchronizeMPSSEInterface(FTC_HANDLE ftHandle)
 BOOLEAN FT2232c::FTC_Timeout(SYSTEMTIME StartSystemTime, DWORD dwTimeoutmSecs)
 {
   BOOLEAN bTimoutExpired = false;
+#ifdef _WIN32
   FILETIME StartFileTime;
   ULARGE_INTEGER StartTime;
   SYSTEMTIME EndSystemTime;
@@ -762,6 +764,15 @@ BOOLEAN FT2232c::FTC_Timeout(SYSTEMTIME StartSystemTime, DWORD dwTimeoutmSecs)
 
   if ((EndTime.QuadPart - StartTime.QuadPart) > ulTimeoutmSecs)
     bTimoutExpired = true;
+#else
+  struct timeval endSystemTime;
+  gettimeofday( &endSystemTime, NULL );
+
+  int64_t elapsedTimeUs = (endSystemTime.tv_sec - StartSystemTime.tv_sec) * 1000 * 1000;
+  elapsedTimeUs += (endSystemTime.tv_usec - StartSystemTime.tv_usec);
+
+  bTimoutExpired = elapsedTimeUs > (dwTimeoutmSecs * 1000);
+#endif
 
   return bTimoutExpired;
 }
@@ -1017,3 +1028,17 @@ FTC_STATUS FT2232c::FTC_ReadCommandsSequenceBytesFromDevice(FTC_HANDLE ftHandle,
   
   return Status;
 }
+
+#ifndef _WIN32
+char* strupr( char* str )
+{
+   char* ch = str;
+   while( *ch != '\0' )
+   {
+      *ch = toupper( *ch );
+      ++ch;
+   }
+
+   return str;
+}
+#endif
