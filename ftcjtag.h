@@ -44,7 +44,7 @@ Revision History:
 // sees symbols defined with this macro as being exported.
 
 #ifdef _WIN32
-   #ifdef FTCJTAG_EXPORTS
+   #ifdef ftcjtag_EXPORTS
       #define FTCJTAG_API __declspec(dllexport)
    #else
       #define FTCJTAG_API __declspec(dllimport)
