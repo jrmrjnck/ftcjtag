@@ -7,6 +7,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <sys/time.h>
 
 typedef pthread_mutex_t CRITICAL_SECTION;
 #define InitializeCriticalSection(pm) pthread_mutex_init(pm, NULL)

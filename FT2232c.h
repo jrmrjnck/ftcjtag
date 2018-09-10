@@ -29,6 +29,7 @@ Revision History:
 
 #include "ftcjtag.h"
 #include <ftd2xx.h>
+#include "FtcJtagInternal.h"
 
 typedef DWORD FTC_HANDLE;
 typedef ULONG FTC_STATUS;

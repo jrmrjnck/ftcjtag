@@ -32,7 +32,7 @@ Revision History:
 #ifdef _WIN32
    #include <windows.h>
 #else
-   #include <WinTypes.h>
+   #include "WinTypes.h"
 #endif
 
 // The following ifdef block is the standard way of creating macros

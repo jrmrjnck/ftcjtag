@@ -329,7 +329,7 @@ FTC_STATUS FT2232h::FTC_GetNumHiSpeedDevices(LPDWORD lpdwNumHiSpeedDevices, HiSp
           while ((dwDeviceIndex < dwNumOfDevices) && (Status == FTC_SUCCESS));
         }
 
-        delete pDevInfoList;
+        delete [] pDevInfoList;
       }
       else
         Status = FTC_INSUFFICIENT_RESOURCES;

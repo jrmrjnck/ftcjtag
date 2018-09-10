@@ -253,7 +253,7 @@ FTC_STATUS FT2232c::FTC_GetNumDevices(LPDWORD lpdwNumDevices, FT2232CDeviceIndex
           while ((dwDeviceIndex < dwNumOfDevices) && (Status == FTC_SUCCESS));
         }
 
-        delete pDevInfoList;
+        delete [] pDevInfoList;
       }
       else
         Status = FTC_INSUFFICIENT_RESOURCES;
@@ -309,7 +309,7 @@ FTC_STATUS FT2232c::FTC_GetNumNotOpenedDevices(LPDWORD lpdwNumNotOpenedDevices, 
           while ((dwDeviceIndex < dwNumOfDevices) && (Status == FTC_SUCCESS));
         }
 
-        delete pDevInfoList;
+        delete [] pDevInfoList;
       }
       else
         Status = FTC_INSUFFICIENT_RESOURCES;
